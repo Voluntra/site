@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .gradient-text {
+        @apply bg-clip-text text-transparent;
+        background-image: linear-gradient(to top left, theme('colors.neutral.500'), theme('colors.neutral.300'), theme('colors.neutral.100'));
+    }
+}

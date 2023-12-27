@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      padding: {
+        page: "6rem",
+      },
       colors: {
         background: "#0F0F0F",
         foreground: "#E0E0E0",
