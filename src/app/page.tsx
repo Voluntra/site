@@ -1,5 +1,6 @@
 import Image from "next/image";
 import AppStore from "../../public/app_store.svg";
+import GooglePlay from "../../public/google_play.png";
 
 const Home = () => {
   return (
@@ -16,11 +17,19 @@ const Home = () => {
         Discover opportunities to volunteer in your community, track your hours,
         and integrate with Xello.
       </p>
-      <Image
-        alt="Download on Apple App Store"
-        src={AppStore}
-        className="cursor-pointer pt-5"
-      />
+      <div className="flex gap-4 relative items-center align-middle container justify-center">
+        <Image
+          alt="Download on Apple App Store"
+          src={AppStore}
+          className="cursor-pointer pt-5"
+        />
+        <Image
+          alt="Download on Google Play Store"
+          src={GooglePlay}
+          width={150}
+          className="cursor-pointer pt-5"
+        />
+      </div>
     </main>
   );
 };
