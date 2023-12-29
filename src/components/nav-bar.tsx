@@ -1,7 +1,21 @@
+import siteConfig from "@/config/siteConfig";
+import Link from "next/link";
+
 const NavBar = () => {
   return (
-    <nav className="font-medium w-full border-b border-neutral-800 h-14 flex items-center align-middle text-foreground px-5 backdrop-blur-sm">
-      Voluntra
+    <nav className="fixed z-50 justify-between w-full border-b border-neutral-800 h-14 flex items-center align-middle text-foreground px-5 backdrop-blur-md">
+      <Link className="flex gap-2 font-medium" href="/">
+        <p>A</p>
+        <p>Voluntra</p>
+      </Link>
+      <div className="bg-transparent/30 rounded-full border border-neutral-800 py-2 px-3 flex flex-row gap-2">
+        {siteConfig.links.map((link) => (
+          <Link href={link.href} key={link.name}>
+            {link.name}
+          </Link>
+        ))}
+      </div>
+      <div>Voluntra</div>
     </nav>
   );
 };

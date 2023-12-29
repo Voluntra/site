@@ -5,6 +5,10 @@
 @layer components {
     .gradient-text {
         @apply bg-clip-text text-transparent;
-        background-image: linear-gradient(to top left, theme('colors.neutral.500'), theme('colors.neutral.300'), theme('colors.neutral.100'));
+        background-image: linear-gradient(to top left, theme('colors.neutral.900'), theme('colors.neutral.300'), theme('colors.neutral.100'));
+    }
+    .gradient-accent {
+        @apply bg-clip-text text-transparent;
+        background-image: linear-gradient(to top left, theme('colors.purple.900'), theme('colors.purple.300'), theme('colors.neutral.100'));
     }
 }
