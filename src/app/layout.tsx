@@ -1,5 +1,6 @@
 import NavBar from "@/components/nav-bar";
 import siteConfig from "@/config/siteConfig";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={inter.className + " bg-background"}>
         <NavBar />
+        <SpeedInsights />
         {children}
       </body>
     </html>
