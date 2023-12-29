@@ -22,26 +22,6 @@ const features: Feature[] = [
     description: "Discover opportunities to volunteer in your community",
     icon: icons.trend,
   },
-  {
-    title: "Discover",
-    description: "Discover opportunities to volunteer in your community",
-    icon: icons.discover,
-  },
-  {
-    title: "Discover",
-    description: "Discover opportunities to volunteer in your community",
-    icon: icons.discover,
-  },
-  {
-    title: "Discover",
-    description: "Discover opportunities to volunteer in your community",
-    icon: icons.discover,
-  },
-  {
-    title: "Discover",
-    description: "Discover opportunities to volunteer in your community",
-    icon: icons.discover,
-  },
 ];
 
 export default features;
