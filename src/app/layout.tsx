@@ -1,3 +1,4 @@
+import Footer from "@/components/footer";
 import NavBar from "@/components/nav-bar";
 import siteConfig from "@/config/siteConfig";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -23,8 +24,8 @@ export default function RootLayout({
         <NavBar />
         <SpeedInsights />
         {children}
+        <Footer />
       </body>
     </html>
   );
 }
-

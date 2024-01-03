@@ -9,7 +9,7 @@ const Home = () => {
     <>
       <main className="flex flex-col items-center p-page overflow-hidden">
         <div className="flex justify-center align-middle items-center gap-1 select-none rounded-full border w-auto py-1 px-3 shadow-md border-neutral-800 backdrop-blur-sm backdrop-filter bg-neutral-900">
-          <Sparkles className="h-4 w-4" />
+          <Sparkles className="h-4 w-4 fill-purple-400 text-neutral-400" />
           <p className="text-xs text-neutral-400">
             Developed by students, for students
           </p>
@@ -22,7 +22,10 @@ const Home = () => {
           Discover opportunities to volunteer in your community, track your
           hours, and integrate with Xello.
         </p>
-        <div className="flex gap-4 relative items-center align-middle container justify-center">
+        <div
+          className="flex gap-4 relative items-center align-middle container justify-center"
+          id="downloads"
+        >
           <Image
             alt="Download on App Store"
             src={AppStore}
