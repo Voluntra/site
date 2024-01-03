@@ -1,4 +1,5 @@
 import features from "@/lib/feature-list";
+import { Sparkles } from "lucide-react";
 import Image from "next/image";
 import AppStore from "../../public/app_store.svg";
 import GooglePlay from "../../public/google_play.png";
@@ -7,12 +8,13 @@ const Home = () => {
   return (
     <>
       <main className="flex flex-col items-center p-page overflow-hidden">
-        <div className="select-none rounded-full border w-auto py-1 px-3 shadow-md border-neutral-800 backdrop-blur-sm backdrop-filter bg-neutral-900">
+        <div className="flex justify-center align-middle items-center gap-1 select-none rounded-full border w-auto py-1 px-3 shadow-md border-neutral-800 backdrop-blur-sm backdrop-filter bg-neutral-900">
+          <Sparkles className="h-4 w-4" />
           <p className="text-xs text-neutral-400">
             Developed by students, for students
           </p>
         </div>
-        <h1 className="gradient-text select-none tracking-tight w-3/4 text-center text-7xl leading-none pb-2 font-semibold pt-5 text-neutral-500">
+        <h1 className="gradient-text select-none tracking-tight w-3/4 text-center text-7xl leading-none pb-2 font-semibold pt-5 text-neutral-100">
           Voluntra is a better way to{" "}
           <span className="gradient-accent">volunteer</span>
         </h1>

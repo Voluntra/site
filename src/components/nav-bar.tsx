@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../app/icon.png";
+import Button from "./ui/button";
 
 const NavBar = () => {
   return (
@@ -9,7 +10,7 @@ const NavBar = () => {
         <Image src={Logo} alt="Logo" height={24} width={24} />
         <p>Voluntra</p>
       </Link>
-      <div>Voluntra</div>
+      <Button>Install now </Button>
     </nav>
   );
 };
