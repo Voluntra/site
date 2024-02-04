@@ -5,15 +5,17 @@ import Button from "./ui/button";
 
 const NavBar = () => {
   return (
-    <nav className="z-50 justify-between w-full border-b border-neutral-800 h-14 flex items-center align-middle text-foreground px-5 backdrop-blur-md">
-      <Link className="flex gap-2 font-medium" href="/">
-        <Image src={Logo} alt="Logo" height={24} width={24} />
-        <p>Voluntra</p>
+    <header className="z-50 justify-between w-full border-b border-neutral-800 h-14 flex items-center align-middle text-foreground px-5 backdrop-blur-md">
+      <Link className="flex gap-2 font-medium items-center" href="/">
+        <Image src={Logo} alt="Logo" className="h-8 w-8" />
+        <h1>Voluntra</h1>
       </Link>
-      <Button>
-        <Link href={"#downloads"}>Install now</Link>
-      </Button>
-    </nav>
+      <nav>
+        <Button>
+          <Link href="#downloads">Install now</Link>
+        </Button>
+      </nav>
+    </header>
   );
 };
 

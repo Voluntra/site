@@ -19,6 +19,7 @@ const config = {
     },
     extend: {
       padding: {
+        smPage: "2rem",
         page: "6rem",
       },
       colors: {
@@ -81,3 +82,4 @@ const config = {
 } satisfies Config;
 
 export default config;
+
