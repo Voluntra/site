@@ -19,7 +19,7 @@ const Home = () => {
           Voluntra is a better way to{" "}
           <span className="gradient-accent">volunteer</span>
         </h1>
-        <p className="text-neutral-500 select-none text-xs">
+        <p className="text-neutral-500 select-none text-xs sm:text-base">
           Discover opportunities to volunteer in your community, track your
           hours, and integrate with Xello.
         </p>
