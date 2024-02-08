@@ -10,7 +10,9 @@ const Feature = ({ description, icon, title }: FeatureProps) => {
       <div>
         <div className="flex align-middle items-center gap-1">
           <div className="h-6 w-6">{icon}</div>
-          <h3 className="font-bold">{title}</h3>
+          <h3 className="font-bold sm:text-sm md:text-md lg:text-base">
+            {title}
+          </h3>
         </div>
         <p className="text-neutral-500 text-sm text-left">{description}</p>
       </div>

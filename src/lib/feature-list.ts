@@ -13,7 +13,7 @@ const features: Feature[] = [
     icon: icons.hourglass,
   },
   {
-    title: "Xello Integration",
+    title: "Integrations",
     description: "Effortlessly update your Xello profile with your hours",
     icon: icons.bear,
   },
