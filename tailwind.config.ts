@@ -2,12 +2,7 @@ import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
+  content: ["./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
     container: {
@@ -18,6 +13,10 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: () => ({
+        "radial-gradient":
+          "radial-gradient(circle at top right, rgba(38,38,38,1) 0%, rgba(23,23,23,1) 100%)",
+      }),
       padding: {
         smPage: "2rem",
         page: "6rem",
@@ -82,4 +81,3 @@ const config = {
 } satisfies Config;
 
 export default config;
-

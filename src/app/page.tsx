@@ -1,12 +1,12 @@
 "use client";
 
-import Feature from "@/components/feature";
+import Feature from "@/components/feature-card";
 import features from "@/lib/feature-list";
 import { Variants, motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import Image from "next/image";
-import AppStore from "../../public/app_store.svg";
-import GooglePlay from "../../public/google_play.png";
+import AppStore from "../../public/app-store.svg";
+import GooglePlay from "../../public/google-play.png";
 
 const Home = () => {
   const container: Variants = {
@@ -57,11 +57,7 @@ const Home = () => {
           Voluntra is a better way to{" "}
           <span className="gradient-accent">volunteer</span>
         </motion.h1>
-        <motion.p
-          className="text-neutral-500 select-none text-xs sm:text-base"
-          variants={item}
-          style={{ willChange: "transform, opacity" }}
-        >
+        <motion.p className="text-neutral-500 select-none text-xs">
           Discover opportunities to volunteer in your community, track your
           hours, and integrate with Xello.
         </motion.p>
@@ -88,12 +84,13 @@ const Home = () => {
         className="min-h-screen text-white text-center p-smPage sm:p-page pb-0"
         id="features"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 auto-rows-fr grid-auto-rows:min-content">
-          {features.map(({ description, icon, title }) => (
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 auto-rows-fr">
+          {features.map(({ description, icon, title, image }) => (
             <Feature
               description={description}
               icon={icon}
               title={title}
+              image={image}
               key={title}
             />
           ))}
