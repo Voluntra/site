@@ -57,7 +57,11 @@ const Home = () => {
           Voluntra is a better way to{" "}
           <span className="gradient-accent">volunteer</span>
         </motion.h1>
-        <motion.p className="text-neutral-500 select-none text-xs">
+        <motion.p
+          className="text-neutral-500 select-none text-xs"
+          variants={item}
+          style={{ willChange: "transform, opacity" }}
+        >
           Discover opportunities to volunteer in your community, track your
           hours, and integrate with Xello.
         </motion.p>
