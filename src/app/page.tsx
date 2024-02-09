@@ -1,9 +1,11 @@
-import Feature from "@/components/feature";
+"use client";
+
+import Feature from "@/components/feature-card";
 import features from "@/lib/feature-list";
 import { Sparkles } from "lucide-react";
 import Image from "next/image";
-import AppStore from "../../public/app_store.svg";
-import GooglePlay from "../../public/google_play.png";
+import AppStore from "../../public/app-store.svg";
+import GooglePlay from "../../public/google-play.png";
 
 const Home = () => {
   return (
@@ -45,12 +47,13 @@ const Home = () => {
         className="min-h-screen text-white text-center p-smPage sm:p-page pb-0"
         id="features"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 auto-rows-fr">
-          {features.map(({ description, icon, title }) => (
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 auto-rows-fr grid-auto-rows:min-content">
+          {features.map(({ description, icon, title, image }) => (
             <Feature
               description={description}
               icon={icon}
               title={title}
+              image={image}
               key={title}
             />
           ))}
