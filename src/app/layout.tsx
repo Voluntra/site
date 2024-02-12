@@ -1,6 +1,7 @@
 import Footer from "@/components/footer";
 import NavBar from "@/components/nav-bar";
 import siteConfig from "@/config/siteConfig";
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -24,6 +25,7 @@ export default function RootLayout({
         <NavBar />
         <SpeedInsights />
         {children}
+        <Analytics />
         <Footer />
       </body>
     </html>
