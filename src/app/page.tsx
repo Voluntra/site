@@ -98,13 +98,13 @@ const Home = () => {
             <motion.div
               variants={item}
               style={{ willChange: "transform, opacity" }}
+              key={title}
             >
               <FeatureCard
                 description={description}
                 icon={icon}
                 title={title}
                 image={image}
-                key={title}
               />
             </motion.div>
           ))}
