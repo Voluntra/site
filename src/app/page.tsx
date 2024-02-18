@@ -1,6 +1,7 @@
 "use client";
 
 import FeatureCard from "@/components/feature-card";
+import siteConfig from "@/config/site";
 import features from "@/lib/feature-list";
 import { Variants, motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
@@ -45,25 +46,24 @@ const Home = () => {
           style={{ willChange: "transform, opacity" }}
         >
           <Sparkles className="h-4 w-4 text-purple-100" />
-          <p className="text-xs text-neutral-400">
-            Developed by students, for students
-          </p>
+          <p className="text-xs text-neutral-400">{siteConfig.home.aside}</p>
         </motion.section>
         <motion.h1
           className="gradient-text select-none tracking-tight w-full sm:w-3/4 text-center text-5xl md:text-7xl leading-none pb-2 font-semibold pt-5 text-neutral-100"
           variants={item}
           style={{ willChange: "transform, opacity" }}
         >
-          Voluntra is a better way to{" "}
-          <span className="gradient-accent">volunteer</span>
+          {siteConfig.home.header.title}{" "}
+          <span className="gradient-accent">
+            {siteConfig.home.header.accent}
+          </span>
         </motion.h1>
         <motion.p
           className="text-neutral-500 select-none text-xs"
           variants={item}
           style={{ willChange: "transform, opacity" }}
         >
-          Discover opportunities to volunteer in your community, track your
-          hours, and integrate with Xello.
+          {siteConfig.home.description}
         </motion.p>
         <motion.section
           className="flex gap-4 relative items-center align-middle container justify-center"
