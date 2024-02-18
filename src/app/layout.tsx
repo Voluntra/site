@@ -22,10 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={inter.className + " bg-background"}>
-        <NavBar />
         <SpeedInsights />
-        {children}
         <Analytics />
+        <NavBar />
+        {children}
         <Footer />
       </body>
     </html>
