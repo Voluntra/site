@@ -20,13 +20,6 @@ export const metadata: Metadata = {
     url: "https://voluntra.org",
     siteName: siteConfig.title,
     locale: "en_US",
-    images: [
-      {
-        url: "/opengraph.jpg",
-        width: 1894,
-        height: 813,
-      },
-    ],
     type: "website",
   },
 };
