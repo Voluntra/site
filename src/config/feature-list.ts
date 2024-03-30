@@ -1,6 +1,6 @@
 import Feature from "@/types/features";
 import MonthlyGoal from "../../public/monthly-goal.svg";
-import { icons } from "./icons";
+import { icons } from "../lib/icons";
 
 const features: Feature[] = [
   {
@@ -19,12 +19,6 @@ const features: Feature[] = [
     title: "Integrations",
     description: "Effortlessly update your Xello profile with your hours",
     icon: icons.bear,
-    image: MonthlyGoal,
-  },
-  {
-    title: "Featured",
-    description: "Discover opportunities to volunteer in your community",
-    icon: icons.trend,
     image: MonthlyGoal,
   },
 ];

@@ -1,22 +1,26 @@
 import Feature from "@/types/features";
-import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import {
+  GlowingStarsBackgroundCard,
+  GlowingStarsDescription,
+  GlowingStarsTitle,
+} from "./ui/glowing-stars";
 
-const Feature = ({ description, icon, title, image }: Feature) => {
+// TODO: add images to these feature cards
+// The capability for images to be displayed in these feature cards exists
+// but because the design is not finished they cannot be displayed yet
+const Feature = ({ description, title, image }: Feature) => {
   return (
-    <div className="select-none p-5 flex flex-col justify-between aspect-square backdrop-blur-md bg-neutral-900 border border-neutral-800 rounded-md sm:hover:border-neutral-600 ease-in duration-200 transition-all relative">
-      <div className="flex justify-center items-center flex-grow relative">
-        <Image src={image} alt="Monthly Goal UI" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-rgba(0,0,0,0.7)"></div>
-      </div>
-      <div className="mt-auto">
-        <div className="flex align-middle items-center gap-1">
-          <div className="h-6 w-6">{icon}</div>
-          <h3 className="font-bold sm:text-sm md:text-md lg:text-base">
-            {title}
-          </h3>
+    <div className="flex items-center justify-center antialiased">
+      <GlowingStarsBackgroundCard>
+        <GlowingStarsTitle>{title}</GlowingStarsTitle>
+        <div className="flex justify-between items-end">
+          <GlowingStarsDescription>{description}</GlowingStarsDescription>
+          <div className="size-8 rounded-full bg-[hsla(0,0%,100%,.1)] flex items-center justify-center cursor-pointer">
+            <ArrowRight />
+          </div>
         </div>
-        <p className="text-neutral-500 text-sm text-left">{description}</p>
-      </div>
+      </GlowingStarsBackgroundCard>
     </div>
   );
 };

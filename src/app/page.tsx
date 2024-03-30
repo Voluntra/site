@@ -1,8 +1,8 @@
 "use client";
 
 import FeatureCard from "@/components/feature-card";
+import features from "@/config/feature-list";
 import siteConfig from "@/config/site";
-import features from "@/lib/feature-list";
 import { Variants, motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import Image from "next/image";
@@ -35,7 +35,7 @@ const Home = () => {
   return (
     <>
       <motion.main
-        className="flex flex-col items-center p-smPage sm:p-page overflow-hidden"
+        className="flex flex-col items-center p-smPage sm:p-page overflow-hidden antialiased"
         variants={container}
         initial="hidden"
         animate="show"
@@ -89,7 +89,7 @@ const Home = () => {
         id="features"
       >
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-4 gap-4 auto-rows-fr"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 auto-rows-fr"
           variants={container}
           initial="hidden"
           animate="show"
