@@ -12,6 +12,23 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  openGraph: {
+    title: siteConfig.title,
+    description:
+      "Connecting students with volunteer opportunities in their community",
+    url: "https://voluntra.org",
+    siteName: siteConfig.title,
+    locale: "en_US",
+    images: [
+      {
+        url: "/opengraph.jpg",
+        width: 1894,
+        height: 813,
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function RootLayout({
