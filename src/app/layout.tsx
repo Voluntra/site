@@ -10,6 +10,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://voluntra.org"),
   title: siteConfig.title,
   description: siteConfig.description,
   keywords: siteConfig.keywords,
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.title,
     locale: "en_US",
     type: "website",
+    images: "/opengraph-image.jpg",
   },
 };
 
