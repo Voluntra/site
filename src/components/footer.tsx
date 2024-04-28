@@ -10,12 +10,12 @@ import { Separator } from "./ui/separator";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="bg-black pt-smPage sm:pt-page">
       <div className="p-smPage sm:px-page sm:py-0">
         <Separator
           orientation="horizontal"
           decorative
-          className="bg-neutral-700 h-px "
+          className="bg-neutral-900 h-px0"
         />
       </div>
       <nav className="flex p-smPage pt-0 sm:p-page justify-between">
@@ -46,7 +46,7 @@ const Footer = () => {
         </div>
         <div className="sm:flex gap-2 items-center justify-center align-middle text-neutral-500 hidden">
           <Rocket className="text-purple-400" />
-          <p>Powered by Next.js</p>
+          <p>Powered by Next.js and React</p>
         </div>
       </nav>
     </footer>

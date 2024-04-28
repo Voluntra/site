@@ -1,5 +1,6 @@
 import Footer from "@/components/footer";
 import NavBar from "@/components/nav-bar";
+import { ThemeProvider } from "@/components/theme-provider";
 import siteConfig from "@/config/site";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -33,12 +34,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className + " bg-background"}>
+      <body
+        className={
+          inter.className +
+          " bg-background selection:bg-purple-500 selection:text-purple-300"
+        }
+      >
         <SpeedInsights />
         <Analytics />
         <NavBar />
-        {children}
-        <Footer />
+        <ThemeProvider attribute="class" defaultTheme="system">
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -18,7 +18,7 @@ const siteConfig = {
     "Xello Integration",
   ],
   home: {
-    aside: "Developed by students, for students",
+    tagline: "Developed by students, for students",
     header: {
       title: "Voluntra is a better way to ",
       accent: "volunteer",
