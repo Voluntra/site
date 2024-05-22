@@ -1,6 +1,9 @@
 import Axios from "axios";
-import { StorageValue, buildStorage } from "axios-cache-interceptor";
-import { setupCache } from "axios-cache-interceptor/dev";
+import {
+  StorageValue,
+  buildStorage,
+  setupCache,
+} from "axios-cache-interceptor";
 import NodeCache from "node-cache";
 
 export const cache = new NodeCache({ stdTTL: 60 * 60 * 24 * 7 });
