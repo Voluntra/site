@@ -15,6 +15,7 @@ const rateLimiter = new RateLimiter({
 });
 
 export const POST = async (request: NextRequest) => {
+  const axios = useAxios();
   const ip = request.ip ?? request.headers.get("X-Forwarded-For") ?? "unknown";
   const isRateLimited = rateLimiter.limit(ip);
 
@@ -36,7 +37,6 @@ export const POST = async (request: NextRequest) => {
   try {
     const body = await request.json();
     const { index } = foodBankSchema.parse(body);
-    const axios = useAxios();
 
     /**
      * If no index is specified, the will evalute to the endpoint for the first page
