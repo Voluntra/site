@@ -1,13 +1,38 @@
 import useAxios from "@/hooks/useAxios";
+import { RateLimiter } from "@/lib/rate-limiter";
 import { foodBankSchema } from "@/schema/foodbank";
 import { FoodBank } from "@/types/api/foodbank";
 import { ApiResponseError, ApiResponseSuccess } from "@/types/api/response";
 import { AxiosError } from "axios";
 import * as cheerio from "cheerio";
-
 import { NextRequest, NextResponse } from "next/server";
 
+export const runtime = "edge";
+
+const rateLimiter = new RateLimiter({
+  windowSize: 10000,
+  maxRequests: 10,
+});
+
 export const POST = async (request: NextRequest) => {
+  const ip = request.ip ?? request.headers.get("X-Forwarded-For") ?? "unknown";
+  const isRateLimited = rateLimiter.limit(ip);
+
+  if (isRateLimited) {
+    return NextResponse.json<ApiResponseError>(
+      {
+        message: "Slow down! Too many requests",
+        error: {
+          code: "429",
+          message: "Rate limit exceeded",
+        },
+      },
+      {
+        status: 429,
+      }
+    );
+  }
+
   try {
     const body = await request.json();
     const { index } = foodBankSchema.parse(body);

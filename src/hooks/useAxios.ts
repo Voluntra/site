@@ -1,10 +1,10 @@
 import Axios from "axios";
 import { StorageValue, buildStorage } from "axios-cache-interceptor";
 import { setupCache } from "axios-cache-interceptor/dev";
-
 import NodeCache from "node-cache";
 
-const cache = new NodeCache({ stdTTL: 60 * 60 * 24 * 7 });
+export const cache = new NodeCache({ stdTTL: 60 * 60 * 24 * 7 });
+
 const cacheStorage = buildStorage({
   find(key) {
     return new Promise((resolve) => {
@@ -33,7 +33,6 @@ const useAxios = () => {
     ttl: 1000 * 60 * 60 * 24, // 24 hours
     methods: ["post", "get"],
     storage: cacheStorage,
-    debug: console.log,
   });
 
   return axios;
