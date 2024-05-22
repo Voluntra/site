@@ -1,24 +1,12 @@
 import Axios from "axios";
-import {
-  StorageValue,
-  buildStorage,
-  setupCache,
-} from "axios-cache-interceptor";
+import { buildStorage, setupCache } from "axios-cache-interceptor";
 import NodeCache from "node-cache";
 
 export const cache = new NodeCache({ stdTTL: 60 * 60 * 24 * 7 });
 
 const cacheStorage = buildStorage({
   find(key) {
-    return new Promise((resolve) => {
-      let value = cache.get(key);
-
-      if (value == undefined) {
-        resolve(undefined);
-      } else {
-        resolve(value as StorageValue);
-      }
-    });
+    return cache.get(key);
   },
 
   set(key, value) {
