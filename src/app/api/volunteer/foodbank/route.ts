@@ -7,8 +7,6 @@ import { AxiosError } from "axios";
 import * as cheerio from "cheerio";
 import { NextRequest, NextResponse } from "next/server";
 
-export const runtime = "edge";
-
 const rateLimiter = new RateLimiter({
   windowSize: 10000,
   maxRequests: 10,

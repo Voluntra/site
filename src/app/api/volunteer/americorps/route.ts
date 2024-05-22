@@ -6,8 +6,6 @@ import { ApiResponseError, ApiResponseSuccess } from "@/types/api/response";
 import { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-export const runtime = "edge";
-
 const endpoint =
   "https://nwqr0n24ec.execute-api.us-east-1.amazonaws.com/prod/volunteer-widget";
 
