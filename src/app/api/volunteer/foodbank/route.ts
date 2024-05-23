@@ -1,4 +1,5 @@
 import useAxios from "@/hooks/useAxios";
+import { createHandler } from "@/lib/route-handler";
 import { foodBankSchema } from "@/schema/foodbank";
 import { FoodBank } from "@/types/api/foodbank";
 import { ApiResponseError, ApiResponseSuccess } from "@/types/api/response";
@@ -6,7 +7,7 @@ import { AxiosError } from "axios";
 import * as cheerio from "cheerio";
 import { NextRequest, NextResponse } from "next/server";
 
-export const POST = async (request: NextRequest) => {
+export const POST = createHandler(async (request: NextRequest) => {
   const axios = useAxios();
 
   const body = await request.json();
@@ -75,4 +76,4 @@ export const POST = async (request: NextRequest) => {
         }
       );
     });
-};
+});
