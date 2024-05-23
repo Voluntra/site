@@ -38,12 +38,12 @@ export function createHandler(handler: (request: NextRequest) => any) {
         {
           message: "Something went wrong",
           error: {
-            code: "400",
+            code: "500",
             message: "Unknown error occurred",
           },
         },
         {
-          status: 400,
+          status: 500,
         }
       );
     }
