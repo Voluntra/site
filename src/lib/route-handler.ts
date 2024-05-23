@@ -39,7 +39,7 @@ export function createHandler(handler: (request: NextRequest) => any) {
           message: "Something went wrong",
           error: {
             code: "400",
-            message: "Invalid request body",
+            message: "Unknown error occurred",
           },
         },
         {
