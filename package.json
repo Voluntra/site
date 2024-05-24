@@ -28,6 +28,7 @@
     "react-dom": "^18",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "ts-sse": "^0.0.6",
     "zod": "^3.23.8"
   },
   "devDependencies": {
