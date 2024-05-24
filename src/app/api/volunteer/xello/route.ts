@@ -1,7 +1,7 @@
 import useAxios from "@/hooks/useAxios";
 import { createHandler } from "@/lib/route-handler";
 import { xelloSchema } from "@/schema/xello";
-import { ApiResponseSuccess } from "@/types/api/response";
+import { ApiResponseError, ApiResponseSuccess } from "@/types/api/response";
 import { Experiences, XelloResponse } from "@/types/api/xello";
 import { AxiosError, AxiosResponse } from "axios";
 import { NextRequest, NextResponse } from "next/server";
@@ -54,6 +54,21 @@ export const POST = createHandler(async (request: NextRequest) => {
       );
     })
     .catch((e: AxiosError) => {
-      throw e;
+      {
+        console.error(e);
+
+        return NextResponse.json<ApiResponseError>(
+          {
+            message: "Something went wrong",
+            error: {
+              code: e.code ?? "",
+              message: e.message,
+            },
+          },
+          {
+            status: 500,
+          }
+        );
+      }
     });
 });
