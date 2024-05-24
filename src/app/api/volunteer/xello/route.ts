@@ -6,9 +6,7 @@ import { Experiences, XelloResponse } from "@/types/api/xello";
 import { AxiosError, AxiosResponse } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-const getToken = async (username: string, password: string) => {
-  const axios = useAxios();
-
+const getToken = async (username: string, password: string, axios) => {
   return await axios
     .post("https://login.xello.world/api/auth/login", {
       cache: false,
@@ -31,7 +29,7 @@ export const POST = createHandler(async (request: NextRequest) => {
   const axios = useAxios();
 
   const { username, password } = xelloSchema.parse(body);
-  let jwtToken = await getToken(username, password);
+  let jwtToken = await getToken(username, password, axios);
 
   return axios
     .get("https://student.xello.world/api/experiences", {
