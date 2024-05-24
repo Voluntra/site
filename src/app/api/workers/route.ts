@@ -1,5 +1,4 @@
 import parseJSONFromString from "@/lib/json";
-import { createHandler } from "@/lib/route-handler";
 import { streamSchema, SyncEvents } from "@/schema/workers";
 import http from "https";
 import { NextRequest, NextResponse } from "next/server";
@@ -20,7 +19,7 @@ const endpoint = `https://api.cloudflare.com/client/v4/accounts/${process.env.AC
  *
  * TODO: Refactor this endpoint to use a better client library to handle the http requests
  */
-export const GET = createHandler(async (request: NextRequest) => {
+export const GET = async (request: NextRequest) => {
   // Initialize a new TransformStream for the response
   const responseStream = new TransformStream();
   const writer = responseStream.writable.getWriter();
@@ -129,4 +128,4 @@ export const GET = createHandler(async (request: NextRequest) => {
       "Cache-Control": "no-cache, no-transform",
     },
   });
-});
+};
