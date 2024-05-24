@@ -4,9 +4,14 @@ import { xelloSchema } from "@/schema/xello";
 import { ApiResponseError, ApiResponseSuccess } from "@/types/api/response";
 import { Experiences, XelloResponse } from "@/types/api/xello";
 import { AxiosError, AxiosResponse } from "axios";
+import { AxiosCacheInstance } from "axios-cache-interceptor";
 import { NextRequest, NextResponse } from "next/server";
 
-const getToken = async (username: string, password: string, axios) => {
+const getToken = async (
+  username: string,
+  password: string,
+  axios: AxiosCacheInstance
+) => {
   return await axios
     .post("https://login.xello.world/api/auth/login", {
       cache: false,
