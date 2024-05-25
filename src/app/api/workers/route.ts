@@ -1,6 +1,5 @@
 import parseJSONFromString from "@/lib/json";
-import { createHandler } from "@/lib/route-handler";
-import { promptSchema, streamSchema, SyncEvents } from "@/schema/workers";
+import { streamSchema, SyncEvents } from "@/schema/workers";
 import http from "https";
 import { NextRequest, NextResponse } from "next/server";
 import { getSSEWriter } from "ts-sse";
@@ -20,10 +19,7 @@ const endpoint = `https://api.cloudflare.com/client/v4/accounts/${process.env.AC
  *
  * TODO: Refactor this endpoint to use a better client library to handle the http requests
  */
-export const POST = createHandler(async (request: NextRequest) => {
-  const body = await request.json();
-  const { systemPrompt, userPrompt } = promptSchema.parse(body);
-
+export const GET = async (request: NextRequest) => {
   // Initialize a new TransformStream for the response
   const responseStream = new TransformStream();
   const writer = responseStream.writable.getWriter();
@@ -105,8 +101,15 @@ export const POST = createHandler(async (request: NextRequest) => {
         signal: abortController.signal,
         stream: true,
         messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt },
+          {
+            role: "system",
+            content:
+              "You are a helpful assistant that, when given an extremely brief description about where someone you volunteered, you return a brief response that answers the following question: what did [user] like about their volunteering experience? You MUST assume the voice of the user, and you MUST return only two concise sentence that answer the question. DO NOT write any more than that, and write in a casual tone. Be specific when answering the questions, and make up any information if necessary",
+          },
+          {
+            role: "user",
+            content: "I volunteered at the Frisco Public Library",
+          },
         ],
       })
     );
@@ -125,4 +128,4 @@ export const POST = createHandler(async (request: NextRequest) => {
       "Cache-Control": "no-cache, no-transform",
     },
   });
-});
+};
