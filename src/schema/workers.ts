@@ -18,7 +18,7 @@ export type SyncEvents = EventNotifier<{
   };
   complete: {
     data: z.infer<typeof streamSchema>;
-    event: "update";
+    event: "complete";
   };
   close: {
     data: never;

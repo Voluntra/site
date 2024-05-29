@@ -39,13 +39,13 @@ export const GET = async (request: NextRequest) => {
   // Define a function to run before each update
   const beforeFn = (worker: {
     data: z.infer<typeof streamSchema>;
-    event: "update";
+    event: "update" | "complete";
   }) => {
-    streamSchema.parse(worker.data);
-
     if (abort) {
-      throw new Error("Aborted");
+      return;
     }
+
+    streamSchema.parse(worker.data);
   };
 
   // Define the function to handle the streaming of status updates
@@ -89,9 +89,14 @@ export const GET = async (request: NextRequest) => {
           rightBracket = buffer.lastIndexOf("}");
         }
       });
+
       res.on("end", () => {
+        notifier.complete(
+          { data: { response: "[DONE]" }, event: "complete" },
+          { beforeFn }
+        );
+
         abortController.abort();
-        writer.close();
       });
     });
 
