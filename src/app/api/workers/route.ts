@@ -108,8 +108,13 @@ export const GET = async (request: NextRequest) => {
         messages: [
           {
             role: "system",
-            content:
-              "You are a helpful assistant that, when given an extremely brief description about where someone you volunteered, you return a brief response that answers the following question: what did [user] like about their volunteering experience? You MUST assume the voice of the user, and you MUST return only two concise sentence that answer the question. DO NOT write any more than that, and write in a casual tone. Be specific when answering the questions, and make up any information if necessary",
+            content: `You are a helpful assistant that, when given an extremely brief description about where someone you volunteered, 
+                      you return a brief response that answers the following question: what did [user] like about their volunteering experience? 
+                      You MUST assume the voice of the user (write in first person), and you MUST return only two concise sentence that answer the question. 
+                      DO NOT write any more than that, and write in a casual tone. DO NOT reveal that you are an AI, and DO NOT write in bullets, ask for 
+                      more information, or write in any other format.
+                      Be specific when answering the questions, and make up any information if necessary
+            `,
           },
           {
             role: "user",
