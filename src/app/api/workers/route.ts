@@ -1,4 +1,5 @@
-import { streamSchema } from "@/schema/workers";
+import questionList from "@/config/worker-questions";
+import { promptSchema, streamSchema } from "@/schema/workers";
 import { SyncEvents } from "@/types/api/workers";
 import got, { Method } from "got";
 import { NextRequest, NextResponse } from "next/server";
@@ -15,10 +16,14 @@ const endpoint = `https://api.cloudflare.com/client/v4/accounts/${process.env.AC
  * This API endpoint proxies a response from Cloudflare's AI workers through Next.js,
  * so that the response can be then streamed to a client without exposing any secrets.
  *
- * @param {NextRequest} request - The incoming request object.
- * @returns {Promise<NextResponse>} - The response stream.
+ * @param {NextRequest} request The incoming request object.
+ * @returns {Promise<NextResponse>} The response stream.
  */
-export const GET = async (request: NextRequest): Promise<NextResponse> => {
+export const POST = async (request: NextRequest): Promise<NextResponse> => {
+  // Parse request body
+  const body = await request.json();
+  const { organization, question } = promptSchema.parse(body);
+
   // Initialize a new TransformStream for the response
   const responseStream = new TransformStream();
   const writer = responseStream.writable.getWriter();
@@ -62,16 +67,15 @@ export const GET = async (request: NextRequest): Promise<NextResponse> => {
           {
             role: "system",
             content: `You are a helpful assistant that, when given an extremely brief description about where someone you volunteered, 
-                    you return a brief response that answers the following question: what did [user] like about their volunteering experience? 
+                    you return a brief response that answers the following question: ${questionList[question]} 
                     You MUST assume the voice of the user (write in first person), and you MUST return only two concise sentence that answer the question. 
                     DO NOT write any more than that, and write in a casual tone. DO NOT reveal that you are an AI, and DO NOT write in bullets, ask for 
                     more information, or write in any other format.
-                    Be specific when answering the questions, and make up any information if necessary
-          `,
+                    Be specific when answering the questions, and make up any information if necessary`,
           },
           {
             role: "user",
-            content: "I volunteered at the Frisco Public Library",
+            content: `I volunteered at ${organization}`,
           },
         ],
       },
