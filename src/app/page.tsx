@@ -39,7 +39,7 @@ const Home = () => {
     >
       {/* Background Gradient */}
       <motion.div
-        className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
+        className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_5%,black)]"
         variants={item}
         initial="hidden"
         animate="show"
@@ -95,10 +95,9 @@ const Home = () => {
           className="cursor-pointer pt-5 lg:scale-125"
         />
       </motion.section>
-
-      {/* Features Section */}
     </motion.main>
   );
 };
 
 export default Home;
+

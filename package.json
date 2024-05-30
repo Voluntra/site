@@ -27,6 +27,7 @@
     "node-cache": "^5.1.2",
     "react": "^18",
     "react-dom": "^18",
+    "sharp": "^0.33.4",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "ts-sse": "^0.0.6",

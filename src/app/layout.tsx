@@ -36,7 +36,7 @@ export default function RootLayout({
       <body
         className={
           inter.className +
-          " bg-background selection:bg-purple-500 selection:text-purple-300"
+          " bg-background selection:bg-purple-900 selection:text-purple-300"
         }
       >
         <SpeedInsights />
@@ -49,3 +49,4 @@ export default function RootLayout({
     </html>
   );
 }
+
