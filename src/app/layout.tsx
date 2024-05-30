@@ -1,4 +1,3 @@
-import Footer from "@/components/footer";
 import NavBar from "@/components/nav-bar";
 import { ThemeProvider } from "@/components/theme-provider";
 import siteConfig from "@/config/site";
@@ -45,7 +44,6 @@ export default function RootLayout({
         <NavBar />
         <ThemeProvider attribute="class" defaultTheme="system">
           {children}
-          <Footer />
         </ThemeProvider>
       </body>
     </html>
