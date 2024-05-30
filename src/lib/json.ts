@@ -15,7 +15,7 @@ const parseJSONFromString = <T>(jsonString: string): T | null => {
       "Unparseable JSON found:",
       jsonString,
       "resulting in error",
-      error
+      error,
     );
     return null;
   }

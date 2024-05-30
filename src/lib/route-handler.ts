@@ -25,7 +25,7 @@ export function createHandler(handler: (request: NextRequest) => any) {
         },
         {
           status: 429,
-        }
+        },
       );
     }
 
@@ -44,7 +44,7 @@ export function createHandler(handler: (request: NextRequest) => any) {
         },
         {
           status: 500,
-        }
+        },
       );
     }
   };

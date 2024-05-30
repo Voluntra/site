@@ -23,7 +23,7 @@ export const GlowingStarsBackgroundCard = ({
       }}
       className={cn(
         "bg-[background: linear-gradient(220.55deg, #565656 0%, #181818 100%);] p-4 max-w-md max-h-[20rem] h-full w-full rounded-xl border border-neutral-600",
-        className
+        className,
       )}
     >
       <div className="flex justify-center items-center">
@@ -45,7 +45,7 @@ export const GlowingStarsDescription = ({
     <p
       className={cn(
         "text-base text-neutral-400 max-w-[16rem] text-left",
-        className
+        className,
       )}
     >
       {children}
@@ -78,7 +78,7 @@ export const Illustration = ({ mouseEnter }: { mouseEnter: boolean }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       highlightedStars.current = Array.from({ length: 5 }, () =>
-        Math.floor(Math.random() * stars)
+        Math.floor(Math.random() * stars),
       );
       setGlowingStars([...highlightedStars.current]);
     }, 3000);

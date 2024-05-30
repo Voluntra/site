@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from "next/server";
 const getToken = async (
   username: string,
   password: string,
-  axios: AxiosCacheInstance
+  axios: AxiosCacheInstance,
 ) => {
   return await axios
     .post("https://login.xello.world/api/auth/login", {
@@ -53,7 +53,7 @@ export const POST = createHandler(async (request: NextRequest) => {
         },
         {
           status: 200,
-        }
+        },
       );
     })
     .catch((e: AxiosError) => {
@@ -70,7 +70,7 @@ export const POST = createHandler(async (request: NextRequest) => {
           },
           {
             status: 500,
-          }
+          },
         );
       }
     });

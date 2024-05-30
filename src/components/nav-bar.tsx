@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import GitHub from "../../public/github.png";
 import Logo from "../app/icon.png";
 import Button from "./ui/button";
 
@@ -11,8 +12,14 @@ const NavBar = () => {
         <h1>Voluntra</h1>
       </Link>
       <nav>
-        <Button>
-          <Link href="#downloads">Install now</Link>
+        <Button size="icon" className="opacity-70 h-8 w-8" variant="ghost">
+          <Link
+            href="https://github.com/Voluntra"
+            className="p-[6px]"
+            target="_blank"
+          >
+            <Image src={GitHub} alt="Github Logo" />
+          </Link>
         </Button>
       </nav>
     </header>

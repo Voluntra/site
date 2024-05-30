@@ -57,7 +57,7 @@ export const POST = createHandler(async (request: NextRequest) => {
         },
         {
           status: 200,
-        }
+        },
       );
     })
     .catch((e: AxiosError) => {
@@ -73,7 +73,7 @@ export const POST = createHandler(async (request: NextRequest) => {
         },
         {
           status: 500,
-        }
+        },
       );
     });
 });
