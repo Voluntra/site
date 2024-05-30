@@ -2,6 +2,9 @@ import questionList from "@/config/worker-questions";
 import z from "zod";
 
 export const streamSchema = z.object({
+  /** The token returned by Cloudflare AI Worker's, generally a word,
+   * part of a word, or punctuation
+   */
   response: z.string(),
   p: z.string().optional(),
 });
