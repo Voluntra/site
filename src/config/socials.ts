@@ -2,7 +2,7 @@ import { Element } from "@/components/ui/nav-element";
 import GitHub from "../../public/github.png";
 import Instagram from "../../public/instagram.png";
 
-const navElements: Element[] = [
+const socials: Element[] = [
   {
     alt: "GitHub Logo",
     href: "https://github.com/voluntra",
@@ -15,4 +15,4 @@ const navElements: Element[] = [
   },
 ];
 
-export default navElements;
+export default socials;
