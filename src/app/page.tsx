@@ -47,12 +47,12 @@ const Home = () => {
 
       {/* Tagline Tooltip */}
       <motion.section
-        className="flex justify-center align-middle items-center gap-1 rounded-full border w-auto py-1 px-3 shadow-md border-neutral-800 backdrop-blur-sm backdrop-filter bg-gradient-to-b from-neutral-800 to-neutral-900"
+        className="flex justify-center align-middle items-center gap-1 rounded-full border w-auto py-1 px-3 shadow-md border-border backdrop-blur-sm backdrop-filter bg-gradient-to-b from-neutral-700 to-neutral-900"
         variants={item}
         style={{ willChange: "transform, opacity" }}
       >
-        <Sparkles className="h-4 w-4 text-purple-100" />
-        <p className="text-xs md:text-sm 2xl:text-lg text-neutral-400">
+        <Sparkles className="h-4 w-4 text-accent-foreground" />
+        <p className="text-xs md:text-sm 2xl:text-lg text-muted-foreground">
           {siteConfig.home.tagline}
         </p>
       </motion.section>
@@ -78,7 +78,7 @@ const Home = () => {
 
       {/* Download Images */}
       <motion.section
-        className="flex gap-4 lg:gap-8 relative items-center align-middle container justify-center"
+        className="flex gap-4 lg:gap-8 relative items-center align-middle container justify-center select-none"
         id="downloads"
         variants={item}
         style={{ willChange: "transform, opacity" }}

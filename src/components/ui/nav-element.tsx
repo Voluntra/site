@@ -11,7 +11,7 @@ export interface Element {
 
 const NavElement = ({ image, href, alt }: Element) => {
   return (
-    <Button size="icon" className="size-10" variant="ghost" asChild>
+    <Button size="icon" className="size-10 select-none" variant="ghost" asChild>
       <Link href={href} className="p-[6px]" target="_blank">
         <Image src={image} alt={alt} />
       </Link>

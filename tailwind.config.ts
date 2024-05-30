@@ -1,84 +1,89 @@
+import svgToDataUri from "mini-svg-data-uri";
 import type { Config } from "tailwindcss";
-
-const svgToDataUri = require("mini-svg-data-uri");
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
+
+const base = {
+  background: "#0F0F0F",
+  foreground: "#E0E0E0",
+  white: "#ffffff",
+  black: "#000000",
+  purple: {
+    100: "#e0ccf4",
+    200: "#d4bfeb",
+    300: "#c9b2e2",
+    400: "#bea6d9",
+    500: "#b29bd1",
+    600: "#a78fc8",
+    700: "#9f88bf",
+    800: "#9781b4",
+    900: "#8e79aa",
+  },
+  blue: {
+    100: "#c9d2f8",
+    200: "#b9c4f0",
+    300: "#abb7e7",
+    400: "#9caadf",
+    500: "#8f9fd6",
+    600: "#8293ce",
+  },
+  brown: {
+    100: "#eef0a1",
+    200: "#e2e293",
+    300: "#d4d285",
+    400: "#c6c277",
+    500: "#b8b26b",
+    600: "#aba45f",
+  },
+  red: {
+    100: "#fad1d1",
+    200: "#eec1c1",
+    300: "#e3b2b2",
+    400: "#d7a3a3",
+    500: "#cc9595",
+    600: "#c08888",
+  },
+  green: {
+    100: "#d3f9b5",
+    200: "#c4eda5",
+    300: "#b6e095",
+    400: "#a8d487",
+    500: "#9ac779",
+    600: "#8dba6b",
+  },
+  neutral: {
+    100: "#c6c6c6",
+    200: "#acacac",
+    300: "#929292",
+    400: "#787878",
+    500: "#5d5d5d",
+    600: "#434343",
+    700: "#292929",
+    800: "#222222",
+    900: "#1b1b1b",
+  },
+};
 
 const config = {
   darkMode: ["class"],
   content: ["./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
+    colors: () => ({
+      ...base,
+      muted: base.neutral[600],
+      "muted-foreground": base.neutral[200],
+      destructive: base.red[600],
+      "destructive-foreground": base.red[200],
+      accent: base.purple[600],
+      "accent-foreground": base.purple[200],
+      border: base.neutral[800],
+    }),
     extend: {
-      backgroundImage: () => ({
-        "radial-gradient":
-          "radial-gradient(circle at top right, rgba(38,38,38,1) 0%, rgba(23,23,23,1) 100%)",
-      }),
       padding: {
         smPage: "2rem",
         page: "6rem",
-      },
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "#0F0F0F",
-        foreground: "#E0E0E0",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
