@@ -23,6 +23,6 @@ export const promptSchema = z.object({
    */
   organization: z
     .string()
-    .length(30)
+    .max(30)
     .refine((input) => /^[a-zA-Z0-9 ]*$/.test(input)),
 });
