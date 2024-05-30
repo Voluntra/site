@@ -19,6 +19,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.1.7",
+    "got": "^14.3.0",
     "lucide-react": "^0.303.0",
     "mini-svg-data-uri": "^1.4.4",
     "next": "^14.2.3",

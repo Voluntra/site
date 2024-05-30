@@ -1,6 +1,6 @@
-import parseJSONFromString from "@/lib/json";
-import { streamSchema, SyncEvents } from "@/schema/workers";
-import http from "https";
+import { streamSchema } from "@/schema/workers";
+import { SyncEvents } from "@/types/api/workers";
+import got, { Method } from "got";
 import { NextRequest, NextResponse } from "next/server";
 import { getSSEWriter } from "ts-sse";
 import { z } from "zod";
@@ -14,12 +14,11 @@ const endpoint = `https://api.cloudflare.com/client/v4/accounts/${process.env.AC
 /**
  * This API endpoint proxies a response from Cloudflare's AI workers through Next.js,
  * so that the response can be then streamed to a client without exposing any secrets.
- * Unfortunately, this endpoint currently uses plain http requests, instead of a better
- * client library to handle this.
  *
- * TODO: Refactor this endpoint to use a better client library to handle the http requests
+ * @param {NextRequest} request - The incoming request object.
+ * @returns {Promise<NextResponse>} - The response stream.
  */
-export const GET = async (request: NextRequest) => {
+export const GET = async (request: NextRequest): Promise<NextResponse> => {
   // Initialize a new TransformStream for the response
   const responseStream = new TransformStream();
   const writer = responseStream.writable.getWriter();
@@ -39,7 +38,7 @@ export const GET = async (request: NextRequest) => {
   // Define a function to run before each update
   const beforeFn = (worker: {
     data: z.infer<typeof streamSchema>;
-    event: "update" | "complete";
+    event: keyof SyncEvents;
   }) => {
     if (abort) {
       return;
@@ -51,18 +50,40 @@ export const GET = async (request: NextRequest) => {
   // Define the function to handle the streaming of status updates
   const syncStatusStream = async (notifier: SyncEvents) => {
     const options = {
-      method: "POST",
+      method: "POST" as Method,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.TOKEN}`,
+      },
+      json: {
+        signal: abortController.signal,
+        stream: true,
+        messages: [
+          {
+            role: "system",
+            content: `You are a helpful assistant that, when given an extremely brief description about where someone you volunteered, 
+                    you return a brief response that answers the following question: what did [user] like about their volunteering experience? 
+                    You MUST assume the voice of the user (write in first person), and you MUST return only two concise sentence that answer the question. 
+                    DO NOT write any more than that, and write in a casual tone. DO NOT reveal that you are an AI, and DO NOT write in bullets, ask for 
+                    more information, or write in any other format.
+                    Be specific when answering the questions, and make up any information if necessary
+          `,
+          },
+          {
+            role: "user",
+            content: "I volunteered at the Frisco Public Library",
+          },
+        ],
       },
     };
 
     // Buffer to hold incoming data chunks
     let buffer = "";
 
-    const req = http.request(endpoint, options, (res) => {
-      res.on("data", (chunk: Buffer) => {
+    try {
+      const stream = got.stream(endpoint, options);
+
+      stream.on("data", (chunk: Buffer) => {
         // Append the incoming data to the buffer
         buffer += chunk.toString().replace("data: ", "");
 
@@ -72,25 +93,42 @@ export const GET = async (request: NextRequest) => {
         // While there are complete JSON objects in the buffer
         while (leftBracket !== -1 && rightBracket !== -1) {
           const jsonString = buffer.substring(leftBracket, rightBracket + 1);
-          const parsedData =
-            parseJSONFromString<z.infer<typeof streamSchema>>(jsonString);
 
-          // If the JSON object is successfully parsed
-          if (parsedData) {
+          try {
+            let parsedData = JSON.parse(jsonString);
+
             notifier.update(
-              { data: parsedData, event: "update" },
+              {
+                data: parsedData,
+                event: "update",
+              },
               { beforeFn }
             );
-          }
+          } catch (e) {
+            console.error(
+              "Unparseable JSON found:",
+              jsonString,
+              "resulting in error",
+              e
+            );
 
-          // Remove the parsed JSON from the buffer
-          buffer = buffer.substring(rightBracket + 1);
-          leftBracket = buffer.indexOf("{");
-          rightBracket = buffer.lastIndexOf("}");
+            notifier.error(
+              {
+                data: null,
+                event: "error",
+              },
+              { beforeFn }
+            );
+          } finally {
+            // Remove the parsed JSON from the buffer
+            buffer = buffer.substring(rightBracket + 1);
+            leftBracket = buffer.indexOf("{");
+            rightBracket = buffer.lastIndexOf("}");
+          }
         }
       });
 
-      res.on("end", () => {
+      stream.on("end", () => {
         notifier.complete(
           { data: { response: "[DONE]" }, event: "complete" },
           { beforeFn }
@@ -98,33 +136,9 @@ export const GET = async (request: NextRequest) => {
 
         abortController.abort();
       });
-    });
-
-    // Write the initial request data
-    req.write(
-      JSON.stringify({
-        signal: abortController.signal,
-        stream: true,
-        messages: [
-          {
-            role: "system",
-            content: `You are a helpful assistant that, when given an extremely brief description about where someone you volunteered, 
-                      you return a brief response that answers the following question: what did [user] like about their volunteering experience? 
-                      You MUST assume the voice of the user (write in first person), and you MUST return only two concise sentence that answer the question. 
-                      DO NOT write any more than that, and write in a casual tone. DO NOT reveal that you are an AI, and DO NOT write in bullets, ask for 
-                      more information, or write in any other format.
-                      Be specific when answering the questions, and make up any information if necessary
-            `,
-          },
-          {
-            role: "user",
-            content: "I volunteered at the Frisco Public Library",
-          },
-        ],
-      })
-    );
-
-    req.end();
+    } catch (error) {
+      console.error("Error occurred while making the request:", error);
+    }
   };
 
   // Start the status update stream
