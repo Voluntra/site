@@ -10,7 +10,7 @@ const socials: Element[] = [
   },
   {
     alt: "Instagram Logo",
-    href: "https://instagram.com/voluntra",
+    href: "https://instagram.com/voluntra_official",
     image: Instagram,
   },
 ];
