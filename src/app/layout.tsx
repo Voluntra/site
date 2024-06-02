@@ -12,12 +12,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://voluntra.org"),
   title: siteConfig.title,
-  description: siteConfig.description,
+  description: "Connecting students with volunteer organizations",
   keywords: siteConfig.keywords,
   openGraph: {
     title: siteConfig.title,
-    description:
-      "Connecting students with volunteer opportunities in their community",
+    description: "Supercharge your résumé and college apps.",
     url: "https://voluntra.org",
     siteName: siteConfig.title,
     locale: "en_US",
@@ -49,4 +48,3 @@ export default function RootLayout({
     </html>
   );
 }
-

@@ -25,7 +25,7 @@ export const POST = createHandler(async (request: NextRequest) => {
     virtual,
   } = corpsSchema.parse(body);
 
-  let data = {
+  const data = {
     categories,
     dateRanges,
     distance,
@@ -47,7 +47,7 @@ export const POST = createHandler(async (request: NextRequest) => {
         },
         {
           status: 200,
-        },
+        }
       );
     })
     .catch((e: AxiosError) => {
@@ -63,7 +63,7 @@ export const POST = createHandler(async (request: NextRequest) => {
         },
         {
           status: 500,
-        },
+        }
       );
     });
 });

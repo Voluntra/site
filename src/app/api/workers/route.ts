@@ -99,21 +99,21 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
           const jsonString = buffer.substring(leftBracket, rightBracket + 1);
 
           try {
-            let parsedData = JSON.parse(jsonString);
+            const parsedData = JSON.parse(jsonString);
 
             notifier.update(
               {
                 data: parsedData,
                 event: "update",
               },
-              { beforeFn },
+              { beforeFn }
             );
           } catch (e) {
             console.error(
               "Unparseable JSON found:",
               jsonString,
               "resulting in error",
-              e,
+              e
             );
 
             notifier.error(
@@ -121,7 +121,7 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
                 data: null,
                 event: "error",
               },
-              { beforeFn },
+              { beforeFn }
             );
           } finally {
             // Remove the parsed JSON from the buffer
@@ -135,7 +135,7 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
       stream.on("end", () => {
         notifier.complete(
           { data: { response: "[DONE]" }, event: "complete" },
-          { beforeFn },
+          { beforeFn }
         );
 
         abortController.abort();
