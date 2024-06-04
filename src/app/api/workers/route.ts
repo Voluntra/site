@@ -51,7 +51,11 @@ export const POST = createHandler(
         return;
       }
 
-      streamSchema.parse(worker.data);
+      try {
+        streamSchema.parse(worker.data);
+      } catch (e) {
+        console.error("Parsing error!\n" + e);
+      }
     };
 
     // Define the function to handle the streaming of status updates
@@ -72,8 +76,8 @@ export const POST = createHandler(
                     you return a brief response that answers the following question: ${questionList[question]} 
                     You MUST assume the voice of the user (write in first person), and you MUST return only two concise sentence that answer the question. 
                     DO NOT write any more than that, and write in a casual tone. DO NOT reveal that you are an AI, and DO NOT write in bullets, ask for 
-                    more information, or write in any other format.
-                    Be specific when answering the questions, and make up any information if necessary`,
+                    more information, or write in any other format. DO NOT write in any language besides English. Be specific when answering the questions, 
+                    and make up any information if necessary`,
             },
             {
               role: "user",
@@ -90,48 +94,53 @@ export const POST = createHandler(
         const stream = got.stream(endpoint, options);
 
         stream.on("data", (chunk: Buffer) => {
+          console.log("Value for buffer is\n" + chunk.toString());
           // Append the incoming data to the buffer
           buffer += chunk.toString().replace("data: ", "");
 
-          let leftBracket = buffer.indexOf("{");
-          let rightBracket = buffer.lastIndexOf("}");
+          // Split the buffer into separate JSON strings
+          const jsonStrings = buffer.split("\n");
 
           // While there are complete JSON objects in the buffer
-          while (leftBracket !== -1 && rightBracket !== -1) {
-            const jsonString = buffer.substring(leftBracket, rightBracket + 1);
+          for (const str of jsonStrings) {
+            let leftBracket = str.indexOf("{");
+            let rightBracket = str.lastIndexOf("}");
 
-            try {
-              const parsedData = JSON.parse(jsonString);
+            // If the string contains a complete JSON object
+            if (leftBracket !== -1 && rightBracket !== -1) {
+              const jsonString = str.substring(leftBracket, rightBracket + 1);
 
-              notifier.update(
-                {
-                  data: parsedData,
-                  event: "update",
-                },
-                { beforeFn }
-              );
-            } catch (e) {
-              console.error(
-                "Unparseable JSON found:",
-                jsonString,
-                "resulting in error",
-                e
-              );
+              try {
+                const parsedData = JSON.parse(jsonString);
 
-              notifier.error(
-                {
-                  data: null,
-                  event: "error",
-                },
-                { beforeFn }
-              );
-            } finally {
-              // Remove the parsed JSON from the buffer
-              buffer = buffer.substring(rightBracket + 1);
-              leftBracket = buffer.indexOf("{");
-              rightBracket = buffer.lastIndexOf("}");
+                notifier.update(
+                  {
+                    data: parsedData,
+                    event: "update",
+                  },
+                  { beforeFn }
+                );
+              } catch (e) {
+                console.error(
+                  "Unparseable JSON found:",
+                  jsonString,
+                  "resulting in error",
+                  e
+                );
+
+                notifier.error(
+                  {
+                    data: null,
+                    event: "error",
+                  },
+                  { beforeFn }
+                );
+              }
             }
           }
+
+          // Clear the buffer
+          buffer = "";
         });
 
         stream.on("end", () => {
