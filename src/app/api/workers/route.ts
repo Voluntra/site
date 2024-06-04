@@ -53,9 +53,7 @@ export const POST = createHandler(
 
       try {
         streamSchema.parse(worker.data);
-      } catch (e) {
-        console.error("Parsing error!\n" + e);
-      }
+      } catch {}
     };
 
     // Define the function to handle the streaming of status updates
