@@ -21,8 +21,6 @@ export const promptSchema = z.object({
   /** The organization where the user volunteered, which is added to
    * the prompt in the format of `I volunteered at [organization]`
    */
-  organization: z
-    .string()
-    .max(30)
-    .refine((input) => /^[a-zA-Z0-9 ]*$/.test(input)),
+  organization: z.string().refine((input) => /^[a-zA-Z0-9 ]*$/.test(input)),
 });
+
