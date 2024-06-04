@@ -92,7 +92,6 @@ export const POST = createHandler(
         const stream = got.stream(endpoint, options);
 
         stream.on("data", (chunk: Buffer) => {
-          console.log("Value for buffer is\n" + chunk.toString());
           // Append the incoming data to the buffer
           buffer += chunk.toString().replace("data: ", "");
 
