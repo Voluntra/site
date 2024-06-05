@@ -15,6 +15,7 @@
     "@vercel/speed-insights": "^1.0.2",
     "axios": "^1.7.1",
     "axios-cache-interceptor": "^1.5.2",
+    "axios-retry": "^4.4.0",
     "cheerio": "^1.0.0-rc.12",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
