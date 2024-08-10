@@ -5,7 +5,7 @@ import socials from "@/config/socials";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "../app/icon.png";
+import Logo from "../app/apple-icon.png";
 import NavElement from "./ui/nav-element";
 
 const NavBar = () => {
@@ -35,4 +35,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
