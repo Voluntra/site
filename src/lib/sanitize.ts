@@ -1,5 +1,5 @@
 const escapeInput = (text: string) => {
-  const map: Record = {
+  const map: Record<string, string> = {
     '<': '&lt;',
     '>': '&gt;',
     '&': '&amp;',

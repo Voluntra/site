@@ -1,4 +1,3 @@
-import { XelloResponse } from '@/types/api/xello';
 import { AxiosError, AxiosResponse } from 'axios';
 import { AxiosCacheInstance } from 'axios-cache-interceptor';
 
@@ -15,7 +14,7 @@ const getToken = async (
   username: string,
   password: string,
   axios: AxiosCacheInstance
-): Promise => {
+): Promise<string> => {
   return await axios
     .post('https://login.xello.world/api/auth/login', {
       cache: false,
