@@ -1,5 +1,5 @@
-import questionList from "@/config/worker-questions";
-import z from "zod";
+import questionList from '@/config/worker-questions';
+import z from 'zod';
 
 export const streamSchema = z.object({
   /** The token returned by Cloudflare AI Worker's, generally a word,
@@ -23,4 +23,3 @@ export const promptSchema = z.object({
    */
   organization: z.string().refine((input) => /^[a-zA-Z0-9 ]*$/.test(input)),
 });
-

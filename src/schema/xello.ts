@@ -1,5 +1,5 @@
-import escapeInput from "@/lib/sanitize";
-import z from "zod";
+import escapeInput from '@/lib/sanitize';
+import z from 'zod';
 
 export const xelloTokenSchema = z.object({
   username: z.string().transform((v) => escapeInput(v)),
@@ -22,4 +22,3 @@ export const xelloExperienceSchema = xelloTokenSchema.extend({
   endDate: z.string(),
   serviceHour: z.number(),
 });
-

@@ -1,16 +1,16 @@
-import { Element } from "@/components/ui/nav-element";
-import GitHub from "../../public/github.png";
-import Instagram from "../../public/instagram.png";
+import { Element } from '@/components/ui/nav-element';
+import GitHub from '../../public/github.png';
+import Instagram from '../../public/instagram.png';
 
 const socials: Element[] = [
   {
-    alt: "GitHub Logo",
-    href: "https://github.com/voluntra",
+    alt: 'GitHub Logo',
+    href: 'https://github.com/voluntra',
     image: GitHub,
   },
   {
-    alt: "Instagram Logo",
-    href: "https://instagram.com/voluntra_official",
+    alt: 'Instagram Logo',
+    href: 'https://instagram.com/voluntra_official',
     image: Instagram,
   },
 ];

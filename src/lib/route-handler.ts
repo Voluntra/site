@@ -1,6 +1,6 @@
 // apiHandler.ts
-import { ApiResponseError } from "@/types/api/response";
-import { NextRequest, NextResponse } from "next/server";
+import { ApiResponseError } from '@/types/api/response';
+import { NextRequest, NextResponse } from 'next/server';
 
 export function createHandler(handler: (request: NextRequest) => any) {
   return async (request: NextRequest) => {
@@ -11,10 +11,10 @@ export function createHandler(handler: (request: NextRequest) => any) {
 
       return NextResponse.json<ApiResponseError>(
         {
-          message: "Something went wrong",
+          message: 'Something went wrong',
           error: {
-            code: "500",
-            message: "Unknown error occurred",
+            code: '500',
+            message: 'Unknown error occurred',
           },
         },
         {

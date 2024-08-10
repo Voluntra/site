@@ -1,4 +1,4 @@
-import z from "zod";
+import z from 'zod';
 
 const corpsSchema = z.object({
   location: z.string(),

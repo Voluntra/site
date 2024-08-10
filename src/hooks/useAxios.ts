@@ -1,11 +1,11 @@
-import Axios from "axios";
+import Axios from 'axios';
 import {
   AxiosCacheInstance,
   buildStorage,
   setupCache,
-} from "axios-cache-interceptor";
-import axiosRetry from "axios-retry";
-import NodeCache from "node-cache";
+} from 'axios-cache-interceptor';
+import axiosRetry from 'axios-retry';
+import NodeCache from 'node-cache';
 
 const cache = new NodeCache({ stdTTL: 60 * 60 * 24 * 7 });
 
@@ -38,7 +38,7 @@ const useAxios = () => {
   const instance = Axios.create();
   const axios = setupCache(instance, {
     ttl: 1000 * 60 * 60 * 24, // 24 hours
-    methods: ["post", "get"],
+    methods: ['post', 'get'],
     storage: cacheStorage,
   });
 
@@ -48,4 +48,3 @@ const useAxios = () => {
 };
 
 export default useAxios;
-

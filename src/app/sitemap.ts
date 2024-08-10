@@ -1,11 +1,11 @@
-import type { MetadataRoute } from "next";
+import type { MetadataRoute } from 'next';
 
 const sitemap = (): MetadataRoute.Sitemap => {
   return [
     {
-      url: "https://voluntra.org",
+      url: 'https://voluntra.org',
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: 'monthly',
       priority: 1,
     },
   ];

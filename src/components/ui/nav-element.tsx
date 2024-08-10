@@ -1,7 +1,7 @@
-import Image, { StaticImageData } from "next/image";
-import Link from "next/link";
-import { UrlObject } from "url";
-import Button from "./button";
+import Image, { StaticImageData } from 'next/image';
+import Link from 'next/link';
+import { UrlObject } from 'url';
+import Button from './button';
 
 export interface Element {
   image: StaticImageData;
@@ -11,7 +11,12 @@ export interface Element {
 
 const NavElement = ({ image, href, alt }: Element) => {
   return (
-    <Button size="icon" className="size-10 select-none" variant="ghost" asChild>
+    <Button
+      size="icon"
+      className="size-10 select-none xl:size-12"
+      variant="ghost"
+      asChild
+    >
       <Link href={href} className="p-[6px]" target="_blank">
         <Image src={image} alt={alt} />
       </Link>

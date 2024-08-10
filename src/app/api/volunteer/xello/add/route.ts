@@ -1,11 +1,11 @@
-import useAxios from "@/hooks/useAxios";
-import { createHandler } from "@/lib/route-handler";
-import getToken from "@/lib/token";
-import { xelloExperienceSchema } from "@/schema/xello";
-import { ApiResponseError, ApiResponseSuccess } from "@/types/api/response";
-import { Experiences } from "@/types/api/xello";
-import { AxiosError, AxiosResponse } from "axios";
-import { NextRequest, NextResponse } from "next/server";
+import useAxios from '@/hooks/useAxios';
+import { createHandler } from '@/lib/route-handler';
+import getToken from '@/lib/token';
+import { xelloExperienceSchema } from '@/schema/xello';
+import { ApiResponseError, ApiResponseSuccess } from '@/types/api/response';
+import { Experiences } from '@/types/api/xello';
+import { AxiosError, AxiosResponse } from 'axios';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const POST = createHandler(async (request: NextRequest) => {
   const body = await request.json();
@@ -49,16 +49,16 @@ export const POST = createHandler(async (request: NextRequest) => {
   };
 
   return axios
-    .post("https://student.xello.world/api/experiences/volunteer", payload, {
+    .post('https://student.xello.world/api/experiences/volunteer', payload, {
       headers: {
         authorization: jwtToken,
       },
       cache: false,
     })
-    .then((res: AxiosResponse<Experiences[], any>) => {
+    .then((res: AxiosResponse) => {
       return NextResponse.json<ApiResponseSuccess>(
         {
-          message: "Experience added successfully",
+          message: 'Experience added successfully',
           data: res.data,
         },
         {
@@ -71,9 +71,9 @@ export const POST = createHandler(async (request: NextRequest) => {
 
       return NextResponse.json<ApiResponseError>(
         {
-          message: "Something went wrong",
+          message: 'Something went wrong',
           error: {
-            code: e.code ?? "",
+            code: e.code ?? '',
             message: e.message,
           },
         },

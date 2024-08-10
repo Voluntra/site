@@ -12,10 +12,10 @@ const parseJSONFromString = <T>(jsonString: string): T | null => {
     return parsedData;
   } catch (error) {
     console.error(
-      "Unparseable JSON found:",
+      'Unparseable JSON found:',
       jsonString,
-      "resulting in error",
-      error,
+      'resulting in error',
+      error
     );
     return null;
   }

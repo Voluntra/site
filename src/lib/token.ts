@@ -1,6 +1,6 @@
-import { XelloResponse } from "@/types/api/xello";
-import { AxiosError, AxiosResponse } from "axios";
-import { AxiosCacheInstance } from "axios-cache-interceptor";
+import { XelloResponse } from '@/types/api/xello';
+import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosCacheInstance } from 'axios-cache-interceptor';
 
 /**
  * This function is used to retrive a JSON Web Token from Xello,
@@ -15,16 +15,16 @@ const getToken = async (
   username: string,
   password: string,
   axios: AxiosCacheInstance
-): Promise<string> => {
+): Promise => {
   return await axios
-    .post("https://login.xello.world/api/auth/login", {
+    .post('https://login.xello.world/api/auth/login', {
       cache: false,
       username,
       password,
-      SelectedLanguage: "en-US",
+      SelectedLanguage: 'en-US',
       remember: true,
     })
-    .then((res: AxiosResponse<XelloResponse>) => {
+    .then((res: AxiosResponse) => {
       // Return user object containing jwt token
       return res.data.data.jwtToken;
     })

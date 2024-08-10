@@ -1,11 +1,11 @@
-import useAxios from "@/hooks/useAxios";
-import { createHandler } from "@/lib/route-handler";
-import { foodBankSchema } from "@/schema/foodbank";
-import { FoodBank } from "@/types/api/foodbank";
-import { ApiResponseError, ApiResponseSuccess } from "@/types/api/response";
-import { AxiosError } from "axios";
-import * as cheerio from "cheerio";
-import { NextRequest, NextResponse } from "next/server";
+import useAxios from '@/hooks/useAxios';
+import { createHandler } from '@/lib/route-handler';
+import { foodBankSchema } from '@/schema/foodbank';
+import { FoodBank } from '@/types/api/foodbank';
+import { ApiResponseError, ApiResponseSuccess } from '@/types/api/response';
+import { AxiosError } from 'axios';
+import * as cheerio from 'cheerio';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const POST = createHandler(async (request: NextRequest) => {
   const axios = useAxios();
@@ -17,7 +17,7 @@ export const POST = createHandler(async (request: NextRequest) => {
    * If no index is specified, the will evalute to the endpoint for the first page
    */
   const endpoint = `https://volunteer.ntfb.org/need/${
-    index > 0 ? "index/" + index * 12 : ""
+    index > 0 ? 'index/' + index * 12 : ''
   }`;
 
   const data: FoodBank[] = [];
@@ -29,7 +29,7 @@ export const POST = createHandler(async (request: NextRequest) => {
       const $ = cheerio.load(res.data);
 
       // Find all elements with classname `need`
-      const $need = $(".need");
+      const $need = $('.need');
 
       // For each element found, push the innerHTML if it exists
       $need.each((_, element) => {
@@ -37,14 +37,14 @@ export const POST = createHandler(async (request: NextRequest) => {
         let opportunity = Object.create(null) as FoodBank;
 
         // All code below this builds the object
-        const href = $(element).find(".card-body").prop("href");
+        const href = $(element).find('.card-body').prop('href');
         const match = href && href.match(/(\d{6,7})$/);
         if (match) {
           opportunity.id = +match[0];
         }
 
-        opportunity.title = $(element).find(".title").html()?.trim();
-        opportunity.excerpt = $(element).find(".excerpt").html();
+        opportunity.title = $(element).find('.title').html()?.trim();
+        opportunity.excerpt = $(element).find('.excerpt').html();
 
         // Add the object to the `data` array
         data.push(opportunity);
@@ -52,12 +52,12 @@ export const POST = createHandler(async (request: NextRequest) => {
 
       return NextResponse.json<ApiResponseSuccess>(
         {
-          message: "Elements fetched successfully",
+          message: 'Elements fetched successfully',
           data: data,
         },
         {
           status: 200,
-        },
+        }
       );
     })
     .catch((e: AxiosError) => {
@@ -65,15 +65,15 @@ export const POST = createHandler(async (request: NextRequest) => {
 
       return NextResponse.json<ApiResponseError>(
         {
-          message: "Something went wrong",
+          message: 'Something went wrong',
           error: {
-            code: e.code ?? "",
+            code: e.code ?? '',
             message: e.message,
           },
         },
         {
           status: 500,
-        },
+        }
       );
     });
 });
