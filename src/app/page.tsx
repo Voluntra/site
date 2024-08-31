@@ -48,12 +48,12 @@ const Home = () => {
 
         {/* Tagline Tooltip */}
         <motion.section
-          className="flex w-auto items-center justify-center gap-1 rounded-full border border-border bg-gradient-to-b from-neutral-700 to-neutral-900 px-3 py-1 align-middle shadow-md backdrop-blur-sm backdrop-filter"
+          className="flex w-auto items-center justify-center gap-1 rounded-full border border-border bg-gradient-to-b from-neutral-900 to-background px-3 py-1 align-middle shadow-md backdrop-blur-sm backdrop-filter"
           variants={item}
           style={{ willChange: 'transform, opacity' }}
         >
           <Sparkles className="size-4 text-accent-foreground xl:size-6" />
-          <p className="text-xs font-medium text-muted-foreground md:text-sm xl:text-xl">
+          <p className="text-xs font-medium text-muted-foreground md:text-sm xl:text-base">
             {siteConfig.home.tagline}
           </p>
         </motion.section>
