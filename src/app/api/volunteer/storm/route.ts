@@ -1,15 +1,18 @@
 import { createHandler } from '@/lib/route-handler';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export const POST = createHandler(async (request: NextRequest) => {
+export const POST = createHandler(async () => {
   return NextResponse.json(
     {
       message: 'Metadata fetched successfully',
-      time: '2021-10-07T14:00:00Z',
-      location: 'Florida',
-      description:
-        'Hurricane Michael was a very powerful and destructive tropical cyclone that became the first Category 5 hurricane to strike',
-      requirements: 'Must be able to lift 50 lbs',
+      data: {
+        name: 'Humanitarian Relief',
+        time: '12:00 PM',
+        location: 'Florida',
+        description:
+          'Our organization provides essential humanitarian aid during hurricanes, delivering food, water, and medical supplies to affected communities',
+        requirements: 'Must be able to lift 50 lbs',
+      },
     },
     {
       status: 200,
