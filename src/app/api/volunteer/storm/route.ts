@@ -6,11 +6,10 @@ export const POST = createHandler(async () => {
     {
       message: 'Metadata fetched successfully',
       data: {
-        name: 'Humanitarian Relief',
-        time: '12:00 PM',
+        name: 'Storm Cleanup',
+        time: '5:00 PM',
         location: 'Florida',
-        description:
-          'Our organization provides essential humanitarian aid during hurricanes, delivering food, water, and medical supplies to affected communities',
+        description: 'Assist with cleanup efforts',
         requirements: 'Must be able to lift 50 lbs',
       },
     },
