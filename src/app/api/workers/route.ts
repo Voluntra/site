@@ -10,7 +10,7 @@ import { z } from 'zod';
 export const dynamic = 'force-dynamic';
 
 // Define the endpoint for the Cloudflare AI
-const endpoint = `https://api.cloudflare.com/client/v4/accounts/${process.env.ACCOUNT_ID}/ai/run/@cf/qwen/qwen1.5-14b-chat-awq`;
+const endpoint = `https://api.cloudflare.com/client/v4/accounts/${process.env.ACCOUNT_ID}/ai/run/@hf/mistral/mistral-7b-instruct-v0.2`;
 
 /**
  * This API endpoint proxies a response from Cloudflare's AI workers through Next.js,
