@@ -81,6 +81,8 @@ export const POST = createHandler(
 
       // Buffer to hold incoming data chunks
       let buffer = '';
+      const delay = (ms: number) =>
+        new Promise((resolve) => setTimeout(resolve, ms));
 
       try {
         const stream = got.stream(endpoint, options);
@@ -103,6 +105,10 @@ export const POST = createHandler(
 
               try {
                 const parsedData = JSON.parse(jsonString);
+                console.log('Parsed JSON:', parsedData);
+                async () => {
+                  await delay(50);
+                }; // Add a delay of 50ms between updates
 
                 notifier.update(
                   {
@@ -127,11 +133,11 @@ export const POST = createHandler(
                   { beforeFn }
                 );
               }
+
+              // Remove the parsed JSON from the buffer
+              buffer = buffer.substring(rightBracket + 1);
             }
           }
-
-          // Clear the buffer
-          buffer = '';
         });
 
         stream.on('end', () => {
