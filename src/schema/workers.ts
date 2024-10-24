@@ -10,6 +10,7 @@ export const streamSchema = z.object({
 });
 
 export const promptSchema = z.object({
+  prompt: z.string(),
   /** The index of generated questions to be asked as defined in the
    * `questionsList` array
    */

@@ -1,4 +1,3 @@
-import questionList from '@/config/worker-questions';
 import { createHandler } from '@/lib/route-handler';
 import { promptSchema, streamSchema } from '@/schema/workers';
 import { SyncEvents } from '@/types/api/workers';
@@ -24,7 +23,7 @@ export const POST = createHandler(
   async (request: NextRequest): Promise<NextResponse> => {
     // Parse request body
     const body = await request.json();
-    const { organization, question } = promptSchema.parse(body);
+    const { organization, prompt, question } = promptSchema.parse(body);
 
     // Initialize a new TransformStream for the response
     const responseStream = new TransformStream();
@@ -70,12 +69,7 @@ export const POST = createHandler(
           messages: [
             {
               role: 'system',
-              content: `You are a helpful assistant that, when given an extremely brief description about where someone you volunteered, 
-                    you return a brief response that answers the following question: ${questionList[question]} 
-                    You MUST assume the voice of the user (write in first person), and you MUST return only two concise sentence that answer the question. 
-                    DO NOT write any more than that, and write in a casual tone. DO NOT reveal that you are an AI, and DO NOT write in bullets, ask for 
-                    more information, or write in any other format. DO NOT write in any language besides English. ONLY write in English. Be specific when answering the questions, 
-                    and make up any information if necessary`,
+              content: prompt,
             },
             {
               role: 'user',
